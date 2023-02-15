@@ -36,10 +36,12 @@ def record():
 
         if( show==0):
             try:
+                tic=time.time()
+                print(type(rec_frame))
                 res, frame = cv2.imencode('.jpg', rec_frame)   
                 b64 = base64.b64encode(frame) 
                 img = "data:image/jpeg;base64," + b64.decode('utf-8')
-                api_url = "http://172.30.34.33:5000/findface"
+                api_url = "http://172.30.34.64:5000/findface"
                 print(api_url)
                 
                 data= {
@@ -51,6 +53,8 @@ def record():
                 print(response.json())
                 print("Count: "+str(counter))
                 counter=counter+1
+                toc=time.time()
+                print("Time taken: "+str(toc-tic))
 
             except Exception as e:
                 print(e)
