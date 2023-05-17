@@ -25,9 +25,10 @@ except OSError as error:
 #instatiate flask app  
 app = Flask(__name__, template_folder='./templates')
 
-
-camera = cv2.VideoCapture(0)
-
+ipCamUrl='http://192.168.0.105:8080/video'
+# camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(ipCamUrl)
+# camera = cv2.VideoCapture('http://192.168.0.105:4747/video')
 
 def record():
     global rec_frame,show,counter
@@ -40,23 +41,23 @@ def record():
                 tic=time.time()
                 print(type(rec_frame))
                 res, frame = cv2.imencode('.jpg', rec_frame)   
-                # b64 = base64.b64encode(frame) 
-                # img = "data:image/jpeg;base64," + b64.decode('utf-8')
-                # api_url = "http://192.168.0.106:5000/findface"
-                # # api_url = "http://172.30.34.64:5000/findface"
-                # print(api_url)
+                b64 = base64.b64encode(frame) 
+                img = "data:image/jpeg;base64," + b64.decode('utf-8')
+                api_url = "http://192.168.0.106:5000/findface"
+                # api_url = "http://172.30.34.64:5000/findface"
+                print(api_url)
                 
-                # data= {
-                #      "model_name": "ArcFace",
-                #      "location":"lab ICV",
-                #      "img":img
-                # }
-                # response = requests.post(api_url, json=data)
-                # print(response.json())
-                # print("Count: "+str(counter))
-                # counter=counter+1
-                # toc=time.time()
-                # print("Time taken: "+str(toc-tic))
+                data= {
+                     "model_name": "ArcFace",
+                     "location":"lab ICV",
+                     "img":img
+                }
+                response = requests.post(api_url, json=data)
+                print(response.json())
+                print("Count: "+str(counter))
+                counter=counter+1
+                toc=time.time()
+                print("Time taken: "+str(toc-tic))
 
             except Exception as e:
                 print(e)
@@ -120,7 +121,7 @@ def tasks():
                 cv2.destroyAllWindows()
                 
             else:
-                camera = cv2.VideoCapture(0)
+                camera = cv2.VideoCapture(ipCamUrl)
                 switch=1
         elif  request.form.get('rec') == 'Start/Stop Service':
             global rec, out
