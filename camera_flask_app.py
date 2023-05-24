@@ -40,23 +40,23 @@ def record():
                 tic=time.time()
                 print(type(rec_frame))
                 res, frame = cv2.imencode('.jpg', rec_frame)   
-                # b64 = base64.b64encode(frame) 
-                # img = "data:image/jpeg;base64," + b64.decode('utf-8')
+                b64 = base64.b64encode(frame) 
+                img = "data:image/jpeg;base64," + b64.decode('utf-8')
                 # api_url = "http://192.168.0.106:5000/findface"
-                # # api_url = "http://172.30.34.64:5000/findface"
-                # print(api_url)
+                api_url = "http://172.30.34.67:5000/findface"
+                print(api_url)
                 
-                # data= {
-                #      "model_name": "ArcFace",
-                #      "location":"lab ICV",
-                #      "img":img
-                # }
-                # response = requests.post(api_url, json=data)
-                # print(response.json())
-                # print("Count: "+str(counter))
-                # counter=counter+1
-                # toc=time.time()
-                # print("Time taken: "+str(toc-tic))
+                data= {
+                     "model_name": "ArcFace",
+                     "location":"lab ICV",
+                     "img":img
+                }
+                response = requests.post(api_url, json=data)
+                print(response.json())
+                print("Count: "+str(counter))
+                counter=counter+1
+                toc=time.time()
+                print("Time taken: "+str(toc-tic))
 
             except Exception as e:
                 print(e)
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 	#app.run(host='0.0.0.0', port=80,debug=False)
     #app.run(host='0.0.0.0', port=args.port,debug=True)
-    app.run(debug=True)
+    app.run(debug=False)
     # app.run()
 camera.release()
 cv2.destroyAllWindows()     

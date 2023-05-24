@@ -1,9 +1,9 @@
 import cv2
 
-# rtsp_url = "http://admin:User@1234usman@192.168.137.2/video"  # Replace with your V380 camera's RTSP URL
+# rtsp_url = "rstp://admin:User@1234usman@192.168.137.25/live/ch00_0"  # Replace with your V380 camera's RTSP URL
 # rtsp_url = "http://192.168.137.2/"
 # Open the RTSP stream
-rtsp_url = "rtsp://admin:User@1234usman@192.168.137.2:5544/h264_stream"  # Replace with your V380 camera's RTSP URL
+rtsp_url = "rtsp://admin:User@1234usman@192.168.137.25/h264_stream"  # Replace with your V380 camera's RTSP URL
 
 cap = cv2.VideoCapture(rtsp_url)
 
