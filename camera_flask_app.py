@@ -42,7 +42,7 @@ def record():
                 res, frame = cv2.imencode('.jpg', rec_frame)   
                 b64 = base64.b64encode(frame) 
                 img = "data:image/jpeg;base64," + b64.decode('utf-8')
-                # api_url = "http://192.168.0.106:5000/findface"
+                # api_url = "http://10.25.28.102:5000/findface"
                 api_url = "http://172.30.34.67:5000/findface"
                 print(api_url)
                 
