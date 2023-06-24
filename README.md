@@ -3,7 +3,7 @@
  
 ![CAMERA_WEB_aPP](https://github.com/UsmanAsad87/Camera_Flask_App_FYP/assets/92229738/740ab6b8-7b67-4aea-9f26-080b9b6b4f6e)
 
-Running Web Camera App
+## Web Camera App
  
 To run the web camera app just activate the environment go to the Camera_Flask_App_FYP folder and open the camera_flask_app.py in vs code edit the api_url to your live API URL
 
